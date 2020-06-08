@@ -51,7 +51,7 @@ class client
         return $result;
     }
 
-    public function deposit($orderId, $content, $gas = null, $account = null, $mykmsKeyId = null)
+    public function deposit($orderId, $content, $account, $mykmsKeyId, $gas = null)
     {
         $url = self::ROOT_URL . self::TRANSACTION_PATH;
         $request = [
@@ -144,7 +144,7 @@ class client
         return $result;
     }
 
-    public function callWasmContract($orderId, $account, $mykmsKeyId, $contractName, $methodSignature, $inputParamListStr, $outTypes, $gas)
+    public function callWasmContract($orderId, $account, $mykmsKeyId, $contractName, $methodSignature, $inputParamListStr, $outTypes, $gas = null)
     {
         $url = self::ROOT_URL . self::TRANSACTION_PATH;
         $request = [
