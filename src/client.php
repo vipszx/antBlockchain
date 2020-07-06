@@ -204,14 +204,19 @@ class client
         return $result;
     }
 
+    public function setToken($token)
+    {
+        $this->token = $token;
+    }
+
     public function getToken()
     {
-        if ($this->token) {
-            return $this->token;
+        if (!$this->token) {
+            $result = $this->shakeHand();
+            $this->token = $result['token'];
         }
 
-        $result = $this->shakeHand();
-        return $result['data'];
+        return $this->token;
     }
 
     public function sign($microtime)
