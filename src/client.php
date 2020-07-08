@@ -213,7 +213,7 @@ class client
     {
         if (!$this->token) {
             $result = $this->shakeHand();
-            $this->token = $result['token'];
+            $this->token = $result['data'];
         }
 
         return $this->token;
