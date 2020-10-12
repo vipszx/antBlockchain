@@ -1,5 +1,10 @@
+### 注意
+HTTP 方式接入不支持非托管链账户，请使用官方 Java SDK 或 Go SDK
+
 ### install
+```
 composer require "vipszx/antBlockchain"
+```
 
 ### usage
 
