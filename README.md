@@ -19,11 +19,11 @@ $client = new client([
             'gas' => 1000000,
         ]);
        
- //存证
- $clinet->deposit($orderId, $content, $account, $mykmsKeyId, $gas = null);
+//存证
+$clinet->deposit($orderId, $content, $account, $mykmsKeyId, $gas = null);
  
- //异步调用 Solidity 合约
- $client->callSolidityContract($orderId, $account, $mykmsKeyId, $contractName, $methodSignature, $inputParamListStr, $outTypes, $gas = null);
+//异步调用 Solidity 合约
+$client->callSolidityContract($orderId, $account, $mykmsKeyId, $contractName, $methodSignature, $inputParamListStr, $outTypes, $gas = null);
         
 //查询交易
 $this->queryTransaction($hash);
@@ -31,6 +31,10 @@ $this->queryTransaction($hash);
 //查询交易回执
 $this->queryReceipt($hash);
 
- // 查询账户
- $client->queryAccount($account);
+//查询账户
+$client->queryAccount($account);
+
+//解析合约返回值
+$content = bin2hex(base64_decode($output));
+$client->parseOutput($content, $abi, $type);
 ```
