@@ -204,6 +204,30 @@ class client
         return $result;
     }
 
+    public function parseOutput($content, $abi, $vmType = 'EVM')
+    {
+        $url = self::ROOT_URL . self::TRANSACTION_PATH;
+        $request = [
+            'bizid' => $this->bizId,
+            'method' => 'PARSEOUTPUT',
+            'vmTypeEnum' => $vmType,
+            'content' => $content,
+            'abi' => $abi,
+            'accessId' => $this->accessId,
+            'token' => $this->getToken(),
+        ];
+
+        $httpClient = new httpClient();
+        $response = $httpClient->post($url, ['json' => $request]);
+        $result = json_decode($response->getBody(), true);
+
+        if (!is_array($result) || $result['success'] === false) {
+            throw new \Exception('parse output fail ' . $response->getBody());
+        }
+
+        return $result;
+    }
+
     public function setToken($token)
     {
         $this->token = $token;
