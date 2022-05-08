@@ -251,7 +251,7 @@ class client
         $key = openssl_pkey_get_private($privateKey);
 
         openssl_sign($message, $signature, $key, 'SHA256');
-        openssl_free_key($key);
+        unset($key);
 
         return bin2hex($signature);
     }
